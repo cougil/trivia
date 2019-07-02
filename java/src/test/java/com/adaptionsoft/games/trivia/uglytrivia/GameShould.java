@@ -41,4 +41,21 @@ class GameShould {
 
 		assertEquals(playerNameAndNumber, outputStream.toString());
 	}
+
+	@Test
+	void print_the_name_and_player_numbers_when_they_are_added() {
+		String firstPlayerName = "john";
+		String secondPlayerName = "mike";
+
+		game.add(firstPlayerName);
+		game.add(secondPlayerName);
+
+		String firstPlayerNameAndNumber = "john was added\n" +
+				"They are player number 1\n";
+		String secondPlayerNameAndNumber = "mike was added\n" +
+				"They are player number 2\n";
+
+		assertEquals(firstPlayerNameAndNumber+secondPlayerNameAndNumber, outputStream.toString());
+	}
+
 }
