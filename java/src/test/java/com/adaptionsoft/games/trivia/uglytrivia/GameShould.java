@@ -92,11 +92,13 @@ class GameShould {
 
 		game.add("John");
 
+		outputStream = new ByteArrayOutputStream();
+		PrintStream printStream = new PrintStream(outputStream);
+		System.setOut(printStream);
+
 		game.wasCorrectlyAnswered();
 
-		assertEquals("John was added\n" +
-				"They are player number 1\n" +
-				"Answer was corrent!!!!\n" +
+		assertEquals("Answer was corrent!!!!\n" +
 				"John now has 1 Gold Coins.\n", outputStream.toString());
 	}
 }
