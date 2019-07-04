@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -58,4 +59,25 @@ class GameShould {
 		assertEquals(firstPlayerNameAndNumber+secondPlayerNameAndNumber, outputStream.toString());
 	}
 
+	@Test
+	void do_something_when_rolling_dice() {
+
+		game.add("SomePlayer");
+
+		game.roll(1);
+
+		assertEquals("SomePlayer was added\n" +
+				"They are player number 1\n" +
+				"SomePlayer is the current player\n" +
+				"They have rolled a 1\n" +
+				"SomePlayer's new location is 1\n" +
+				"The category is Science\n" +
+				"Science Question 0\n", outputStream.toString());
+	}
+
+	@Test
+	void generate_golden_master() throws IOException {
+		GoldenMaster goldenMaster = new GoldenMaster();
+		goldenMaster.generateGoldenMaster();
+	}
 }
