@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.URISyntaxException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -76,8 +77,13 @@ class GameShould {
 	}
 
 	@Test
-	void generate_golden_master() throws IOException {
+	void check_trivia_against_golden_master() throws IOException, URISyntaxException {
 		GoldenMaster goldenMaster = new GoldenMaster();
-		goldenMaster.generateGoldenMaster();
+		for (long seed=0; seed<1000; seed++) {
+			String expectedGameResult = goldenMaster.getGoldenMaster(seed);
+			String actualGameResult = goldenMaster.getGameResult(seed);
+			assertEquals(expectedGameResult, actualGameResult);
+
+		}
 	}
 }
