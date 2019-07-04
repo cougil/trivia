@@ -9,11 +9,12 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URISyntaxException;
 
+import static com.adaptionsoft.games.trivia.uglytrivia.GoldenMaster.MAX_SEED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameShould {
 
-	private Game game;
+    private Game game;
 	private ByteArrayOutputStream outputStream;
 
 	@BeforeEach
@@ -77,13 +78,25 @@ class GameShould {
 	}
 
 	@Test
-	void check_trivia_against_golden_master() throws IOException, URISyntaxException {
+	void verify_trivia_against_golden_master() throws IOException, URISyntaxException {
 		GoldenMaster goldenMaster = new GoldenMaster();
-		for (long seed=0; seed<1000; seed++) {
+		for (long seed = 0; seed< MAX_SEED; seed++) {
 			String expectedGameResult = goldenMaster.getGoldenMaster(seed);
 			String actualGameResult = goldenMaster.getGameResult(seed);
 			assertEquals(expectedGameResult, actualGameResult);
-
 		}
+	}
+
+	@Test
+	void print_correct_answer_when_current_player_it_is_not_in_penalty_box() {
+
+		game.add("John");
+
+		game.wasCorrectlyAnswered();
+
+		assertEquals("John was added\n" +
+				"They are player number 1\n" +
+				"Answer was corrent!!!!\n" +
+				"John now has 1 Gold Coins.\n", outputStream.toString());
 	}
 }

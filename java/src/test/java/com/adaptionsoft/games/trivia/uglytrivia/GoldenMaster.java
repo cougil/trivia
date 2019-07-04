@@ -15,6 +15,9 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class GoldenMaster {
+
+    public static final int MAX_SEED = 1000;
+
     public String getGameResult(long seed) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
@@ -26,14 +29,18 @@ public class GoldenMaster {
     }
 
     public void generateGoldenMaster() throws IOException {
-        for(long seed=0; seed<1000; seed++) {
-            Path path = Paths.get (seed + ".txt");
+        for(long seed = 0; seed< MAX_SEED; seed++) {
+            Path path = Paths.get (filename(seed));
             Files.write(path, getGameResult(seed).getBytes());
         }
     }
 
+    private String filename(long seed) {
+        return "goldenmasterdata/" + seed + ".txt";
+    }
+
     public String getGoldenMaster(long seed) throws IOException, URISyntaxException {
-        URL resource = this.getClass().getClassLoader().getResource("goldenmasterdata/" + seed + ".txt");
+        URL resource = this.getClass().getClassLoader().getResource(filename(seed));
 
         Path path = Paths.get(resource.toURI());
         List<String> lines = Files.readAllLines(path);
