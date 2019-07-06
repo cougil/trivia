@@ -5,20 +5,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.net.URISyntaxException;
 
-import static com.adaptionsoft.games.trivia.uglytrivia.GoldenMaster.MAX_SEED;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class GameShould {
+public class GameShould {
 
     private Game game;
 	private ByteArrayOutputStream outputStream;
 
 	@BeforeEach
-	void setUp() {
+	public void setUp() {
 		outputStream = getConsoleText();
 		game = new Game();
 	}
@@ -32,7 +29,7 @@ class GameShould {
 	}
 
 	@Test
-	void print_the_name_and_player_number_when_is_added() {
+	public void print_the_name_and_player_number_when_is_added() {
 		String playerName = "john";
 
 		game.add(playerName);
@@ -44,7 +41,7 @@ class GameShould {
 	}
 
 	@Test
-	void print_the_name_and_player_numbers_when_they_are_added() {
+	public void print_the_name_and_player_numbers_when_they_are_added() {
 		String firstPlayerName = "john";
 		String secondPlayerName = "mike";
 
@@ -60,7 +57,7 @@ class GameShould {
 	}
 
 	@Test
-	void do_something_when_rolling_dice() {
+	public void do_something_when_rolling_dice() {
 
 		game.add("SomePlayer");
 
@@ -75,18 +72,18 @@ class GameShould {
 				"Science Question 0\n", outputStream.toString());
 	}
 
-	@Test
-	void verify_trivia_against_golden_master() throws IOException, URISyntaxException {
+	/*@Test
+	public void verify_trivia_against_golden_master() throws IOException, URISyntaxException {
 		GoldenMaster goldenMaster = new GoldenMaster();
 		for (long seed = 0; seed< MAX_SEED; seed++) {
 			String expectedGameResult = goldenMaster.getGoldenMaster(seed);
 			String actualGameResult = goldenMaster.getGameResult(seed);
 			assertEquals(expectedGameResult, actualGameResult);
 		}
-	}
+	}*/
 
 	@Test
-	void print_correct_answer_when_current_player_it_is_not_in_penalty_box() {
+	public void print_correct_answer_when_current_player_it_is_not_in_penalty_box() {
 
 		game.add("John");
 
@@ -110,11 +107,27 @@ class GameShould {
 	}
 
 	@Test
-	void correct_answer_message_is_valid_because_of_bug() {
+	public void correct_answer_message_is_valid_because_of_bug() {
 		String expected = "Answer was correct!!!!";
 
 		String actual = game.getAnswerMessage();
 
 		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void print_message_about_rolling_dice_and_player_location_when_cateogory_is_science() {
+
+		game.add("SomePlayer");
+
+		game.roll(4);
+
+		assertEquals("SomePlayer was added\n" +
+				"They are player number 1\n" +
+				"SomePlayer is the current player\n" +
+				"They have rolled a 4\n" +
+				"SomePlayer's new location is 4\n" +
+				"The category is Pop\n" +
+				"Pop Question 0\n", outputStream.toString());
 	}
 }
