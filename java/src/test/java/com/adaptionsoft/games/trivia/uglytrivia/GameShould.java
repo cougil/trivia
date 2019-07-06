@@ -98,15 +98,15 @@ class GameShould {
 
 		game.wasCorrectlyAnswered();
 
-		assertEquals("Answer was corrent!!!!\n" +
+		assertEquals("Answer was correct!!!!\n" +
 				"John now has 1 Gold Coins.\n", outputStream.toString());
 	}
 
 	@Test
-	void correct_answer_message_is_valid() {
+	void correct_answer_message_is_valid_because_of_bug() {
 		String message = game.getAnswerMessage();
 
-		String expected = "Answer was corrent!!!!";
+		String expected = "Answer was correct!!!!";
 
 		assertEquals(expected, message);
 	}
