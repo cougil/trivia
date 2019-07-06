@@ -19,9 +19,7 @@ class GameShould {
 
 	@BeforeEach
 	void setUp() {
-		outputStream = new ByteArrayOutputStream();
-		PrintStream printStream = new PrintStream(outputStream);
-		System.setOut(printStream);
+		outputStream = getConsoleText();
 		game = new Game();
 	}
 
@@ -92,9 +90,7 @@ class GameShould {
 
 		game.add("John");
 
-		outputStream = new ByteArrayOutputStream();
-		PrintStream printStream = new PrintStream(outputStream);
-		System.setOut(printStream);
+		outputStream = getConsoleText();
 
 		game.wasCorrectlyAnswered();
 
@@ -104,6 +100,13 @@ class GameShould {
 		String actual = outputStream.toString();
 
 		assertEquals(expected, actual);
+	}
+
+	private ByteArrayOutputStream getConsoleText() {
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		PrintStream printStream = new PrintStream(outputStream);
+		System.setOut(printStream);
+		return outputStream;
 	}
 
 	@Test
