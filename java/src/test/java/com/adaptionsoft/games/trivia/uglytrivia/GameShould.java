@@ -205,4 +205,27 @@ public class GameShould {
                 "The category is Sports\n" +
                 "Sports Question 0\n", outputStream.toString());
     }
+
+    @Test
+    void print_message_about_rolling_dice_and_correct_answer_and_winning_gold_coins_and_getting_out_of_penalty_box_when_correctly_answered_in_penalty_box() {
+
+        game.add("A new player");
+        game.wrongAnswer();
+        game.roll(3);
+
+        game.wasCorrectlyAnswered();
+
+        assertEquals("A new player was added\n" +
+                "They are player number 1\n" +
+                "Question was incorrectly answered\n" +
+                "A new player was sent to the penalty box\n" +
+                "A new player is the current player\n" +
+                "They have rolled a 3\n" +
+                "A new player is getting out of the penalty box\n" +
+                "A new player's new location is 3\n" +
+                "The category is Rock\n" +
+                "Rock Question 0\n" +
+                "Answer was correct!!!!\n" +
+                "A new player now has 1 Gold Coins.\n", outputStream.toString());
+    }
 }
