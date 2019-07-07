@@ -175,7 +175,4 @@ public class Game {
 		return !(purses[currentPlayer] == 6);
 	}
 
-	public void setOutput(GameOutput gameOutput) {
-		this.gameOutput = gameOutput;
-	}
 }
