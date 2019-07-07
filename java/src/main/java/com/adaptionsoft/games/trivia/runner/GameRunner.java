@@ -2,6 +2,7 @@
 package com.adaptionsoft.games.trivia.runner;
 import com.adaptionsoft.games.uglytrivia.Game;
 
+import java.io.IOException;
 import java.util.Random;
 
 
@@ -9,13 +10,13 @@ public class GameRunner {
 
 	private static boolean notAWinner;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		Random rand = new Random();
 		play(rand);
 
 	}
 
-	public static void play(Random rand) {
+	public static void play(Random rand) throws IOException {
 		Game aGame = new Game();
 
 		aGame.add("Chet");

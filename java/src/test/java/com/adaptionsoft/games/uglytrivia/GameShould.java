@@ -1,9 +1,11 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,7 +30,7 @@ public class GameShould {
     }
 
     @Test
-    public void print_the_name_and_player_number_when_is_added() {
+    public void print_the_name_and_player_number_when_is_added() throws IOException {
         String playerName = "john";
 
         game.add(playerName);
@@ -40,7 +42,7 @@ public class GameShould {
     }
 
     @Test
-    public void print_the_name_and_player_numbers_when_they_are_added() {
+    public void print_the_name_and_player_numbers_when_they_are_added() throws IOException {
         String firstPlayerName = "john";
         String secondPlayerName = "mike";
 
@@ -56,7 +58,7 @@ public class GameShould {
     }
 
     @Test
-    public void print_message_about_rolling_dice_and_science_category_when_rolling_1() {
+    public void print_message_about_rolling_dice_and_science_category_when_rolling_1() throws IOException {
 
         game.add("SomePlayer");
 
@@ -82,7 +84,7 @@ public class GameShould {
 	}*/
 
     @Test
-    public void print_correct_answer_when_current_player_it_is_not_in_penalty_box() {
+    public void print_correct_answer_when_current_player_it_is_not_in_penalty_box() throws IOException {
 
         game.add("John");
 
@@ -115,7 +117,7 @@ public class GameShould {
     }
 
     @Test
-    public void print_message_about_rolling_dice_and_player_location_when_category_is_science() {
+    public void print_message_about_rolling_dice_and_player_location_when_category_is_science() throws IOException {
 
         game.add("SomePlayer");
 
@@ -137,7 +139,7 @@ public class GameShould {
 	 */
 
     @Test
-    void print_message_about_rolling_dice_and_getting_out_of_penalty_box_when_rolling_odd_and_in_penalty_box() {
+    void print_message_about_rolling_dice_and_getting_out_of_penalty_box_when_rolling_odd_and_in_penalty_box() throws IOException {
         game.add("Some player");
 
         game.wrongAnswer();
@@ -157,7 +159,7 @@ public class GameShould {
     }
 
     @Test
-    void print_message_about_rolling_dice_and_not_getting_out_of_penalty_box_when_rolling_even_and_in_penalty_box() {
+    void print_message_about_rolling_dice_and_not_getting_out_of_penalty_box_when_rolling_even_and_in_penalty_box() throws IOException {
         game.add("Some player");
 
         game.wrongAnswer();
@@ -174,7 +176,7 @@ public class GameShould {
     }
 
     @Test
-    void print_message_about_rolling_dice_and_pop_category_when_rolling_4() {
+    void print_message_about_rolling_dice_and_pop_category_when_rolling_4() throws IOException {
 
         game.add("A new player");
 
@@ -190,7 +192,7 @@ public class GameShould {
     }
 
     @Test
-    void print_message_about_rolling_dice_and_sports_category_when_rolling_2() {
+    void print_message_about_rolling_dice_and_sports_category_when_rolling_2() throws IOException {
 
         game.add("A new player");
 
@@ -206,7 +208,7 @@ public class GameShould {
     }
 
     @Test
-    void print_message_about_rolling_dice_and_correct_answer_and_winning_gold_coins_and_getting_out_of_penalty_box_when_correctly_answered_in_penalty_box() {
+    void print_message_about_rolling_dice_and_correct_answer_and_winning_gold_coins_and_getting_out_of_penalty_box_when_correctly_answered_in_penalty_box() throws IOException {
 
         game.add("A new player");
         game.wrongAnswer();
@@ -229,7 +231,7 @@ public class GameShould {
     }
 
     @Test
-    void print_message_about_correct_answer_and_winning_gold_coins_when_correctly_answered() {
+    void print_message_about_correct_answer_and_winning_gold_coins_when_correctly_answered() throws IOException {
 
         game.add("A new player");
 
@@ -239,5 +241,25 @@ public class GameShould {
                 "They are player number 1\n" +
                 "Answer was correct!!!!\n" +
                 "A new player now has 1 Gold Coins.\n", outputStream.toString());
+    }
+
+    @Disabled
+    void test() throws IOException {
+
+        String fileName = "sytem-test.txt";
+        game.setOutput(new TextOutput(fileName));
+
+        game.add("A new player");
+
+        game.wasCorrectlyAnswered();
+
+        assertEquals("A new player was added\n" +
+                "They are player number 1\n" +
+                "Answer was correct!!!!\n" +
+                "A new player now has 1 Gold Coins.\n", getText(fileName));
+    }
+
+    private String getText(String fileName) {
+        throw new UnsupportedOperationException();
     }
 }

@@ -18,7 +18,7 @@ public class GoldenMaster {
 
     public static final int MAX_SEED = 1000;
 
-    public String getGameResult(long seed) {
+    public String getGameResult(long seed) throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
         System.setOut(printStream);
