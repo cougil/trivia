@@ -12,65 +12,65 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GameShould {
 
     private Game game;
-	private ByteArrayOutputStream outputStream;
+    private ByteArrayOutputStream outputStream;
 
-	@BeforeEach
-	public void setUp() {
-		outputStream = getConsoleText();
-		game = new Game();
-	}
+    @BeforeEach
+    public void setUp() {
+        outputStream = getConsoleText();
+        game = new Game();
+    }
 
-	@Test
-	public void print_nothing_when_game_is_created() {
-		String emptyString = "";
+    @Test
+    public void print_nothing_when_game_is_created() {
+        String emptyString = "";
 
-		assertEquals(emptyString, outputStream.toString());
+        assertEquals(emptyString, outputStream.toString());
 
-	}
+    }
 
-	@Test
-	public void print_the_name_and_player_number_when_is_added() {
-		String playerName = "john";
+    @Test
+    public void print_the_name_and_player_number_when_is_added() {
+        String playerName = "john";
 
-		game.add(playerName);
+        game.add(playerName);
 
-		String playerNameAndNumber = "john was added\n" +
-				"They are player number 1\n";
+        String playerNameAndNumber = "john was added\n" +
+                "They are player number 1\n";
 
-		assertEquals(playerNameAndNumber, outputStream.toString());
-	}
+        assertEquals(playerNameAndNumber, outputStream.toString());
+    }
 
-	@Test
-	public void print_the_name_and_player_numbers_when_they_are_added() {
-		String firstPlayerName = "john";
-		String secondPlayerName = "mike";
+    @Test
+    public void print_the_name_and_player_numbers_when_they_are_added() {
+        String firstPlayerName = "john";
+        String secondPlayerName = "mike";
 
-		game.add(firstPlayerName);
-		game.add(secondPlayerName);
+        game.add(firstPlayerName);
+        game.add(secondPlayerName);
 
-		String firstPlayerNameAndNumber = "john was added\n" +
-				"They are player number 1\n";
-		String secondPlayerNameAndNumber = "mike was added\n" +
-				"They are player number 2\n";
+        String firstPlayerNameAndNumber = "john was added\n" +
+                "They are player number 1\n";
+        String secondPlayerNameAndNumber = "mike was added\n" +
+                "They are player number 2\n";
 
-		assertEquals(firstPlayerNameAndNumber+secondPlayerNameAndNumber, outputStream.toString());
-	}
+        assertEquals(firstPlayerNameAndNumber + secondPlayerNameAndNumber, outputStream.toString());
+    }
 
-	@Test
-	public void do_something_when_rolling_dice() {
+    @Test
+    public void do_something_when_rolling_dice() {
 
-		game.add("SomePlayer");
+        game.add("SomePlayer");
 
-		game.roll(1);
+        game.roll(1);
 
-		assertEquals("SomePlayer was added\n" +
-				"They are player number 1\n" +
-				"SomePlayer is the current player\n" +
-				"They have rolled a 1\n" +
-				"SomePlayer's new location is 1\n" +
-				"The category is Science\n" +
-				"Science Question 0\n", outputStream.toString());
-	}
+        assertEquals("SomePlayer was added\n" +
+                "They are player number 1\n" +
+                "SomePlayer is the current player\n" +
+                "They have rolled a 1\n" +
+                "SomePlayer's new location is 1\n" +
+                "The category is Science\n" +
+                "Science Question 0\n", outputStream.toString());
+    }
 
 	/*@Test
 	public void verify_trivia_against_golden_master() throws IOException, URISyntaxException {
@@ -82,54 +82,54 @@ public class GameShould {
 		}
 	}*/
 
-	@Test
-	public void print_correct_answer_when_current_player_it_is_not_in_penalty_box() {
+    @Test
+    public void print_correct_answer_when_current_player_it_is_not_in_penalty_box() {
 
-		game.add("John");
+        game.add("John");
 
-		outputStream = getConsoleText();
+        outputStream = getConsoleText();
 
-		game.wasCorrectlyAnswered();
+        game.wasCorrectlyAnswered();
 
-		String expected = "Answer was correct!!!!\n" +
-				"John now has 1 Gold Coins.\n";
+        String expected = "Answer was correct!!!!\n" +
+                "John now has 1 Gold Coins.\n";
 
-		String actual = outputStream.toString();
+        String actual = outputStream.toString();
 
-		assertEquals(expected, actual);
-	}
+        assertEquals(expected, actual);
+    }
 
-	private ByteArrayOutputStream getConsoleText() {
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		PrintStream printStream = new PrintStream(outputStream);
-		System.setOut(printStream);
-		return outputStream;
-	}
+    private ByteArrayOutputStream getConsoleText() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        return outputStream;
+    }
 
-	@Test
-	public void correct_answer_message_is_valid_because_of_bug() {
-		String expected = "Answer was correct!!!!";
+    @Test
+    public void correct_answer_message_is_valid_because_of_bug() {
+        String expected = "Answer was correct!!!!";
 
-		String actual = game.getAnswerMessage();
+        String actual = game.getAnswerMessage();
 
-		assertEquals(expected, actual);
-	}
+        assertEquals(expected, actual);
+    }
 
-	@Test
-	public void print_message_about_rolling_dice_and_player_location_when_category_is_science() {
+    @Test
+    public void print_message_about_rolling_dice_and_player_location_when_category_is_science() {
 
-		game.add("SomePlayer");
+        game.add("SomePlayer");
 
-		game.roll(4);
+        game.roll(4);
 
-		assertEquals("SomePlayer was added\n" +
-				"They are player number 1\n" +
-				"SomePlayer is the current player\n" +
-				"They have rolled a 4\n" +
-				"SomePlayer's new location is 4\n" +
-				"The category is Pop\n" +
-				"Pop Question 0\n", outputStream.toString());
-	}
+        assertEquals("SomePlayer was added\n" +
+                "They are player number 1\n" +
+                "SomePlayer is the current player\n" +
+                "They have rolled a 4\n" +
+                "SomePlayer's new location is 4\n" +
+                "The category is Pop\n" +
+                "Pop Question 0\n", outputStream.toString());
+    }
 
 	/*
 	As a trivia player
@@ -188,5 +188,21 @@ public class GameShould {
                 "A new player's new location is 4\n" +
                 "The category is Pop\n" +
                 "Pop Question 0\n", outputStream.toString());
+    }
+
+    @Test
+    void print_message_about_rolling_dice_and_sports_category_when_rolling_2() {
+
+        game.add("A new player");
+
+        game.roll(2);
+
+        assertEquals("A new player was added\n" +
+                "They are player number 1\n" +
+                "A new player is the current player\n" +
+                "They have rolled a 2\n" +
+                "A new player's new location is 2\n" +
+                "The category is Sports\n" +
+                "Sports Question 0\n", outputStream.toString());
     }
 }
