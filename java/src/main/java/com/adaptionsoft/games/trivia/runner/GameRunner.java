@@ -13,11 +13,12 @@ public class GameRunner {
 
 	public static void main(String[] args) throws IOException {
 		Random rand = new Random();
-		play(rand);
+		GameRunner gameRunner = new GameRunner();
+		gameRunner.run(rand);
 
 	}
 
-	public static void play(Random rand) throws IOException {
+	public void run(Random rand) throws IOException {
 		Game aGame = new Game(new ConsoleOutput());
 
 		aGame.add("Chet");
