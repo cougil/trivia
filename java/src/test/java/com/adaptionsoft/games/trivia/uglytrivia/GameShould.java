@@ -138,7 +138,7 @@ public class GameShould {
 	 */
 
     @Test
-    void print_message_about_rolling_dice_and_player_location_when_rolling_and_in_penalty_box() {
+    void print_message_about_rolling_dice_and_getting_out_of_penalty_box_when_rolling_odd_and_in_penalty_box() {
         game.add("Some player");
 
         game.wrongAnswer();
@@ -155,5 +155,22 @@ public class GameShould {
                 "Some player's new location is 3\n" +
                 "The category is Rock\n" +
                 "Rock Question 0\n", outputStream.toString());
+    }
+
+    @Test
+    void print_message_about_rolling_dice_and_not_getting_out_of_penalty_box_when_rolling_even_and_in_penalty_box() {
+        game.add("Some player");
+
+        game.wrongAnswer();
+
+        game.roll(4);
+
+        assertEquals("Some player was added\n" +
+                "They are player number 1\n" +
+                "Question was incorrectly answered\n" +
+                "Some player was sent to the penalty box\n" +
+                "Some player is the current player\n" +
+                "They have rolled a 4\n" +
+                "Some player is not getting out of the penalty box\n", outputStream.toString());
     }
 }
