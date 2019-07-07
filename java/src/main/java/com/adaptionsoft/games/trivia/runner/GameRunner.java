@@ -12,10 +12,14 @@ public class GameRunner {
 	private static boolean notAWinner;
 
 	public static void main(String[] args) throws IOException {
-		Random rand = new Random();
+		Random rand = getRandom();
 		GameRunner gameRunner = new GameRunner();
 		gameRunner.run(rand);
 
+	}
+
+	protected static Random getRandom() {
+		return new Random();
 	}
 
 	public void run(Random rand) throws IOException {
