@@ -23,7 +23,7 @@ public class GoldenMaster {
         PrintStream printStream = new PrintStream(outputStream);
         System.setOut(printStream);
 
-        GameRunner.run( new Random(seed) );
+        new GameRunner().run( new Random(seed) );
 
         return outputStream.toString();
     }
