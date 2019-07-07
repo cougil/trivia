@@ -21,8 +21,8 @@ public class Game {
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
 
-    public  Game(){
-		gameOutput = new ConsoleOutput();
+    public  Game(GameOutput gameOutput) {
+		this.gameOutput = gameOutput;
     	for (int i = 0; i < 50; i++) {
 			popQuestions.addLast("Pop Question " + i);
 			scienceQuestions.addLast(("Science Question " + i));

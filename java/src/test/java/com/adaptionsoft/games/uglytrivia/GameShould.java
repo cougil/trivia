@@ -23,7 +23,7 @@ public class GameShould {
     @BeforeEach
     public void setUp() {
         outputStream = getConsoleText();
-        game = new Game();
+        game = new Game(new ConsoleOutput());
     }
 
     @Test
