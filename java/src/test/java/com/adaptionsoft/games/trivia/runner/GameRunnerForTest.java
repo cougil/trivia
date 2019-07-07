@@ -6,7 +6,7 @@ public class GameRunnerForTest extends GameRunner {
 
     @Override
     protected Random getRandom() {
-        return new Random();
+        return new Random(4);
     }
 
 }

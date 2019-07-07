@@ -16,7 +16,7 @@ public class GameRunner {
 		gameRunner.run();
 	}
 
-    private void run() throws IOException {
+    void run() throws IOException {
         run(getRandom());
     }
 
