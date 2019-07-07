@@ -173,4 +173,20 @@ public class GameShould {
                 "They have rolled a 4\n" +
                 "Some player is not getting out of the penalty box\n", outputStream.toString());
     }
+
+    @Test
+    void print_message_about_rolling_dice_and_pop_category_when_rolling_4() {
+
+        game.add("A new player");
+
+        game.roll(4);
+
+        assertEquals("A new player was added\n" +
+                "They are player number 1\n" +
+                "A new player is the current player\n" +
+                "They have rolled a 4\n" +
+                "A new player's new location is 4\n" +
+                "The category is Pop\n" +
+                "Pop Question 0\n", outputStream.toString());
+    }
 }
