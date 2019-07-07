@@ -1,9 +1,7 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.*;
 
 public class TextOutput implements GameOutput {
     private final String fileName;
@@ -15,7 +13,11 @@ public class TextOutput implements GameOutput {
     @Override
     public void consoleWriteLine(String message) throws IOException {
         Path path = FileSystems.getDefault().getPath(fileName);
+        message = message.concat(System.lineSeparator());
         byte[] lines = message.getBytes();
-        Files.write(path, lines);
+        if (!Files.exists(path)) {
+            Files.write(path, new byte[]{}, StandardOpenOption.CREATE_NEW);
+        }
+        Files.write(path, lines, StandardOpenOption.APPEND);
     }
 }
