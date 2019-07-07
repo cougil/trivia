@@ -1,12 +1,17 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.charset.Charset;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -243,10 +248,13 @@ public class GameShould {
                 "A new player now has 1 Gold Coins.\n", outputStream.toString());
     }
 
-    @Disabled
-    void test() throws IOException {
+    @Test
+    void writte_into_file_message_about_correct_answer_and_winning_gold_coins_when_correctly_answered() throws IOException {
 
-        String fileName = "sytem-test.txt";
+        String fileName = "system-test.txt";
+        Path path = FileSystems.getDefault().getPath(fileName);
+        Files.deleteIfExists(path);
+
         game.setOutput(new TextOutput(fileName));
 
         game.add("A new player");
@@ -256,10 +264,13 @@ public class GameShould {
         assertEquals("A new player was added\n" +
                 "They are player number 1\n" +
                 "Answer was correct!!!!\n" +
-                "A new player now has 1 Gold Coins.\n", getText(fileName));
+                "A new player now has 1 Gold Coins.", readText(fileName));
     }
 
-    private String getText(String fileName) {
-        throw new UnsupportedOperationException();
+    private String readText(String fileName) throws IOException {
+        Path path = FileSystems.getDefault().getPath(fileName);
+        List<String> lines = Files.readAllLines(path, Charset.defaultCharset());
+        return lines.stream().collect(Collectors.joining(System.lineSeparator()));
+
     }
 }
