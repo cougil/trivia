@@ -1,6 +1,5 @@
-package com.adaptionsoft.games.trivia.uglytrivia;
+package com.adaptionsoft.games.uglytrivia;
 
-import com.adaptionsoft.games.uglytrivia.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
