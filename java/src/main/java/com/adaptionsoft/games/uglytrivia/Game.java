@@ -39,8 +39,8 @@ public class Game {
 	    inPenaltyBox[howManyPlayers()] = false;
 
 		String playerMessage = playerName + " was added";
-		consoleWriteLine(playerMessage);
-		consoleWriteLine("They are player number " + players.size());
+		ConsoleOutput.consoleWriteLine(playerMessage);
+		ConsoleOutput.consoleWriteLine("They are player number " + players.size());
 		return true;
 	}
 
@@ -49,24 +49,24 @@ public class Game {
 	}
 
 	public void roll(int roll) {
-		consoleWriteLine(players.get(currentPlayer) + " is the current player");
-		consoleWriteLine("They have rolled a " + roll);
+		ConsoleOutput.consoleWriteLine(players.get(currentPlayer) + " is the current player");
+		ConsoleOutput.consoleWriteLine("They have rolled a " + roll);
 
 		if (inPenaltyBox[currentPlayer]) {
 			if (roll % 2 != 0) {
 				isGettingOutOfPenaltyBox = true;
 
-				consoleWriteLine(players.get(currentPlayer) + " is getting out of the penalty box");
+				ConsoleOutput.consoleWriteLine(players.get(currentPlayer) + " is getting out of the penalty box");
 				places[currentPlayer] = places[currentPlayer] + roll;
 				if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 
-				consoleWriteLine(players.get(currentPlayer)
+				ConsoleOutput.consoleWriteLine(players.get(currentPlayer)
 								+ "'s new location is "
 								+ places[currentPlayer]);
-				consoleWriteLine("The category is " + currentCategory());
+				ConsoleOutput.consoleWriteLine("The category is " + currentCategory());
 				askQuestion();
 			} else {
-				consoleWriteLine(players.get(currentPlayer) + " is not getting out of the penalty box");
+				ConsoleOutput.consoleWriteLine(players.get(currentPlayer) + " is not getting out of the penalty box");
 				isGettingOutOfPenaltyBox = false;
 				}
 
@@ -75,10 +75,10 @@ public class Game {
 			places[currentPlayer] = places[currentPlayer] + roll;
 			if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 
-			consoleWriteLine(players.get(currentPlayer)
+			ConsoleOutput.consoleWriteLine(players.get(currentPlayer)
 						+ "'s new location is "
 						+ places[currentPlayer]);
-			consoleWriteLine("The category is " + currentCategory());
+			ConsoleOutput.consoleWriteLine("The category is " + currentCategory());
 			askQuestion();
 		}
 
@@ -87,22 +87,18 @@ public class Game {
 	private void askQuestion() {
 		if (currentCategory() == "Pop") {
 			String message = popQuestions.removeFirst().toString();
-			consoleWriteLine(message);
+			ConsoleOutput.consoleWriteLine(message);
 		}
 		if (currentCategory() == "Science")
-			consoleWriteLine(scienceQuestions.removeFirst().toString());
+			ConsoleOutput.consoleWriteLine(scienceQuestions.removeFirst().toString());
 		if (currentCategory() == "Sports")
-			consoleWriteLine(sportsQuestions.removeFirst().toString());
+			ConsoleOutput.consoleWriteLine(sportsQuestions.removeFirst().toString());
 		if (currentCategory() == "Rock")
-			consoleWriteLine(rockQuestions.removeFirst().toString());
-	}
-
-	private void consoleWriteLine(String message) {
-		System.out.println(message);
+			ConsoleOutput.consoleWriteLine(rockQuestions.removeFirst().toString());
 	}
 
 
-	private String currentCategory() {
+    private String currentCategory() {
 		if (places[currentPlayer] == 0) return "Pop";
 		if (places[currentPlayer] == 4) return "Pop";
 		if (places[currentPlayer] == 8) return "Pop";
@@ -118,9 +114,9 @@ public class Game {
 	public boolean wasCorrectlyAnswered() {
 		if (inPenaltyBox[currentPlayer]){
 			if (isGettingOutOfPenaltyBox) {
-				consoleWriteLine("Answer was correct!!!!");
+				ConsoleOutput.consoleWriteLine("Answer was correct!!!!");
 				purses[currentPlayer]++;
-				consoleWriteLine(players.get(currentPlayer)
+				ConsoleOutput.consoleWriteLine(players.get(currentPlayer)
 								+ " now has "
 								+ purses[currentPlayer]
 								+ " Gold Coins.");
@@ -140,9 +136,9 @@ public class Game {
 
 		} else {
 
-			consoleWriteLine(getAnswerMessage());
+			ConsoleOutput.consoleWriteLine(getAnswerMessage());
 			purses[currentPlayer]++;
-			consoleWriteLine(players.get(currentPlayer)
+			ConsoleOutput.consoleWriteLine(players.get(currentPlayer)
 						+ " now has "
 						+ purses[currentPlayer]
 						+ " Gold Coins.");
@@ -160,8 +156,8 @@ public class Game {
 	}
 
 	public boolean wrongAnswer(){
-		consoleWriteLine("Question was incorrectly answered");
-		consoleWriteLine(players.get(currentPlayer)+ " was sent to the penalty box");
+		ConsoleOutput.consoleWriteLine("Question was incorrectly answered");
+		ConsoleOutput.consoleWriteLine(players.get(currentPlayer)+ " was sent to the penalty box");
 		inPenaltyBox[currentPlayer] = true;
 
 		currentPlayer++;
