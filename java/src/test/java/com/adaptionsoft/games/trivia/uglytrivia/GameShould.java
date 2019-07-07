@@ -228,4 +228,17 @@ public class GameShould {
                 "Answer was correct!!!!\n" +
                 "A new player now has 1 Gold Coins.\n", outputStream.toString());
     }
+
+    @Test
+    void print_message_about_correct_answer_and_winning_gold_coins_when_correctly_answered() {
+
+        game.add("A new player");
+
+        game.wasCorrectlyAnswered();
+
+        assertEquals("A new player was added\n" +
+                "They are player number 1\n" +
+                "Answer was correct!!!!\n" +
+                "A new player now has 1 Gold Coins.\n", outputStream.toString());
+    }
 }
