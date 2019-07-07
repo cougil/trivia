@@ -116,7 +116,7 @@ public class GameShould {
 	}
 
 	@Test
-	public void print_message_about_rolling_dice_and_player_location_when_cateogory_is_science() {
+	public void print_message_about_rolling_dice_and_player_location_when_category_is_science() {
 
 		game.add("SomePlayer");
 
@@ -130,4 +130,30 @@ public class GameShould {
 				"The category is Pop\n" +
 				"Pop Question 0\n", outputStream.toString());
 	}
+
+	/*
+	As a trivia player
+	I want to be able to save the game events to a text file
+	So I can analyze my moves later
+	 */
+
+    @Test
+    void print_message_about_rolling_dice_and_player_location_when_rolling_and_in_penalty_box() {
+        game.add("Some player");
+
+        game.wrongAnswer();
+
+        game.roll(3);
+
+        assertEquals("Some player was added\n" +
+                "They are player number 1\n" +
+                "Question was incorrectly answered\n" +
+                "Some player was sent to the penalty box\n" +
+                "Some player is the current player\n" +
+                "They have rolled a 3\n" +
+                "Some player is getting out of the penalty box\n" +
+                "Some player's new location is 3\n" +
+                "The category is Rock\n" +
+                "Rock Question 0\n", outputStream.toString());
+    }
 }
