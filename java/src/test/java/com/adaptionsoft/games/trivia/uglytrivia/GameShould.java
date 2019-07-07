@@ -57,7 +57,7 @@ public class GameShould {
     }
 
     @Test
-    public void do_something_when_rolling_dice() {
+    public void print_message_about_rolling_dice_and_science_category_when_rolling_1() {
 
         game.add("SomePlayer");
 
